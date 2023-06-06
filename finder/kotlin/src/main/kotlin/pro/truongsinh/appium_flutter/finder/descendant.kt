@@ -8,7 +8,11 @@ fun descendant(of: FlutterElement, matching: FlutterElement, matchRoot: Boolean 
     "matchRoot" to matchRoot,
     "firstMatchOnly" to firstMatchOnly
   )
-  m["of"] = of.getRawMap()
-  m["matching"] = matching.getRawMap()
+  of.getRawMap().forEach {
+    m["of_${it.key}"] = it.value!! as String
+  }
+  matching.getRawMap().forEach {
+    m["matching_${it.key}"] = it.value!! as String
+  }
   return FlutterElement(m)
 }
